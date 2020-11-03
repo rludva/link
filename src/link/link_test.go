@@ -66,6 +66,16 @@ func TestAddLink(t *testing.T) {
 				{"existing item", "http://www.existing.com"},
 			},
 		},
+		{
+			"existing item",
+			"http://www.existing-with-differen.content.com",
+			[]link{
+				{"existing item", "http://www.existing.com"},
+			},
+			[]link{
+				{"existing item", "http://www.existing-with-differen.content.com"},
+			},
+		},
 	}
 
 	for _, tt := range testCases {
