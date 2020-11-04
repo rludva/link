@@ -21,7 +21,7 @@ func GetLink(id string) string {
 	return ""
 }
 
-// AddLink is adding/replacinf a new short-link to the database.
+// AddLink is adding/replacing a new short-link to the database.
 func AddLink(id, url string) {
 	if GetLink(id) == "" {
 		database = append(database, link{id, url})

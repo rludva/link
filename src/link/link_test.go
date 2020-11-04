@@ -91,12 +91,6 @@ func TestAddLink(t *testing.T) {
 	for _, tt := range testCases {
 		copyDatabase(tt.initialDatabase)
 		AddLink(tt.id, tt.link)
-		if len(tt.finalDatabase) != len(database) {
-			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
-			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
-			t.Errorf("database: len(): %v, %v\n", len(database), database)
-			t.Errorf("---")
-		}
 		if GetLink(tt.id) != tt.link {
 			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
 			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
