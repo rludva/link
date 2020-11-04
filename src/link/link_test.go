@@ -53,7 +53,7 @@ func TestAddLink(t *testing.T) {
 			"http://www.abc.com",
 			[]link{},
 			[]link{
-				{"a", "http://www.a____c.com"},
+				{"a", "http://www.abc.com"},
 			},
 		},
 		{
@@ -89,9 +89,13 @@ func TestAddLink(t *testing.T) {
 	}
 
 	for _, tt := range testCases {
+		copyDatabase(tt.finalDatabase)
+		expectedValue := GetLink(tt.id)
+
 		copyDatabase(tt.initialDatabase)
 		AddLink(tt.id, tt.link)
-		if GetLink(tt.id) != tt.link {
+		value := GetLink(tt.id)
+		if value != expectedValue {
 			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
 			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
 			t.Errorf("database: len(): %v, %v\n", len(database), database)

@@ -1,16 +1,5 @@
 package link
 
-type link struct {
-	id, link string
-}
-
-var database []link
-
-func copyDatabase(source []link) {
-	database = make([]link, len(source))
-	copy(database, source)
-}
-
 // GetLink returns link for defined id..
 func GetLink(id string) string {
 	for _, v := range database {
@@ -28,6 +17,17 @@ func AddLink(id, url string) {
 		return
 	}
 	setLink(id, url)
+}
+
+type link struct {
+	id, link string
+}
+
+var database []link
+
+func copyDatabase(source []link) {
+	database = make([]link, len(source))
+	copy(database, source)
 }
 
 func setLink(id, link string) {
