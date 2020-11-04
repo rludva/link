@@ -21,20 +21,19 @@ func GetLink(id string) string {
 	return ""
 }
 
-// AddLink is adding a new short-link to the database.
+// AddLink is adding/replacinf a new short-link to the database.
 func AddLink(id, url string) {
 	if GetLink(id) == "" {
 		database = append(database, link{id, url})
 		return
 	}
-	// no test to force me add this call! setLink(id, url)
+	setLink(id, url)
 }
-/*
+
 func setLink(id, link string) {
-	for _, v := range database {
+	for i, v := range database {
 		if id == v.id {
-			v.link = link
+			database[i].link = link
 		}
 	}
 }
-*/

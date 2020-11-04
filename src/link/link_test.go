@@ -53,27 +53,37 @@ func TestAddLink(t *testing.T) {
 			"http://www.abc.com",
 			[]link{},
 			[]link{
-				{"a", "http://www.avc.com"},
+				{"a", "http://www.a____c.com"},
 			},
 		},
 		{
-			"existing item",
+			"existing",
 			"http://www.existing.com",
 			[]link{
-				{"existing item", "http://www.existing.com"},
+				{"existing", "http://www.existing.com"},
 			},
 			[]link{
-				{"existing item", "http://www.existing.com"},
+				{"existing", "http://www.existing.com"},
 			},
 		},
 		{
-			"existing item",
-			"http://www.existing-with-differen.content.com",
+			"donald",
+			"http://www.donald-trump.com",
 			[]link{
-				{"existing item", "http://www.existing.com"},
+				{"donald", "http://www.trump.com"},
 			},
 			[]link{
-				{"existing item", "http://www.existing-with-differen.content.com"},
+				{"donald", "http://www.donald-trump.com"},
+			},
+		},
+		{
+			"009",
+			"http://www.alice.com",
+			[]link{
+				{"009", "http://www.jane.com"},
+			},
+			[]link{
+				{"009", "http://www.alice.com"},
 			},
 		},
 	}
@@ -85,6 +95,13 @@ func TestAddLink(t *testing.T) {
 			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
 			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
 			t.Errorf("database: len(): %v, %v\n", len(database), database)
+			t.Errorf("---")
+		}
+		if GetLink(tt.id) != tt.link {
+			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
+			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
+			t.Errorf("database: len(): %v, %v\n", len(database), database)
+			t.Errorf("---")
 		}
 	}
 }
