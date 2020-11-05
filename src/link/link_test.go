@@ -94,7 +94,7 @@ func TestAddLink(t *testing.T) {
 	}
 }
 
-func TestRemoveLink(t *testing.T) {
+func TestDeleteLink(t *testing.T) {
 	type testCase struct {
 		id                             string
 		initialDatabase, finalDatabase []link
