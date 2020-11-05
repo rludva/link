@@ -76,16 +76,6 @@ func TestAddLink(t *testing.T) {
 				{"donald", "http://www.donald-trump.com"},
 			},
 		},
-		{
-			"009",
-			"http://www.alice.com",
-			[]link{
-				{"009", "http://www.jane.com"},
-			},
-			[]link{
-				{"009", "http://www.alice.com"},
-			},
-		},
 	}
 
 	for _, tt := range testCases {
@@ -97,8 +87,38 @@ func TestAddLink(t *testing.T) {
 		value := GetLink(tt.id)
 		if value != expectedValue {
 			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
-			t.Errorf("finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
-			t.Errorf("database: len(): %v, %v\n", len(database), database)
+			t.Errorf("expected finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
+			t.Errorf("cuurentDatabase: len(): %v, %v\n", len(database), database)
+			t.Errorf("---")
+		}
+	}
+}
+
+func TestRemoveLink(t *testing.T) {
+	type testCase struct {
+		id                             string
+		initialDatabase, finalDatabase []link
+	}
+
+	testCases := []testCase{
+		{
+			"a",
+			[]link{
+				{"a", "http://www.abc.com"},
+			},
+			[]link{},
+		},
+	}
+
+	for _, tt := range testCases {
+		copyDatabase(tt.initialDatabase)
+		DeleteLink(tt.id)
+		value := GetLink(tt.id)
+
+		if value != "" {
+			t.Errorf("initialDatabase: len(): %v, %v\n", len(tt.initialDatabase), tt.initialDatabase)
+			t.Errorf("expected finalDatabase: len(): %v, %v\n", len(tt.finalDatabase), tt.finalDatabase)
+			t.Errorf("cuurentDatabase: len(): %v, %v\n", len(database), database)
 			t.Errorf("---")
 		}
 	}

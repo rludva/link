@@ -19,6 +19,12 @@ func AddLink(id, url string) {
 	setLink(id, url)
 }
 
+// DeleteLink is removing the link from the Database..
+func DeleteLink(id string) {
+	// Well it is facked removed..
+	setLink(id, "")
+}
+
 type link struct {
 	id, link string
 }
